@@ -1,0 +1,336 @@
+{
+  "version": "0.3.1",
+  "name": "ERC20",
+  "instructions": [
+    {
+      "name": "new",
+      "docs": [
+        "dev: Sets the values for {name} and {symbol}.\nThe default value of {decimals} is 18. To select a different value for\n{decimals} you should overload it.\nAll two of these values are immutable: they can only be set once during\nconstruction."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "name": "totalsupply",
+          "type": "u256"
+        }
+      ]
+    },
+    {
+      "name": "name",
+      "docs": [
+        "dev: Returns the name of the token."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [],
+      "returns": "string"
+    },
+    {
+      "name": "symbol",
+      "docs": [
+        "dev: Returns the symbol of the token, usually a shorter version of the\nname."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [],
+      "returns": "string"
+    },
+    {
+      "name": "mint",
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "account",
+          "type": "publicKey"
+        },
+        {
+          "name": "amt",
+          "type": "u256"
+        }
+      ]
+    },
+    {
+      "name": "decimals",
+      "docs": [
+        "dev: Returns the number of decimals used to get its user representation.\nFor example, if `decimals` equals `2`, a balance of `505` tokens should\nbe displayed to a user as `5.05` (`505 / 10 ** 2`).\nTokens usually opt for a value of 18, imitating the relationship between\nEther and Wei. This is the value {ERC20} uses, unless this function is\noverridden;\nNOTE: This information is only used for _display_ purposes: it in\nno way affects any of the arithmetic of the contract, including\n{IERC20-balanceOf} and {IERC20-transfer}."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [],
+      "returns": "u8"
+    },
+    {
+      "name": "totalSupply",
+      "docs": [
+        "dev: See {IERC20-totalSupply}."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [],
+      "returns": "u256"
+    },
+    {
+      "name": "balanceOf",
+      "docs": [
+        "dev: See {IERC20-balanceOf}."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "account",
+          "type": "publicKey"
+        }
+      ],
+      "returns": "u256"
+    },
+    {
+      "name": "transfer",
+      "docs": [
+        "dev: See {IERC20-transfer}.\nRequirements:\n- `recipient` cannot be the zero address.\n- the caller must have a balance of at least `amount`."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "recipient",
+          "type": "publicKey"
+        },
+        {
+          "name": "amount",
+          "type": "u256"
+        }
+      ],
+      "returns": "bool"
+    },
+    {
+      "name": "allowance",
+      "docs": [
+        "dev: See {IERC20-allowance}."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "name": "spender",
+          "type": "publicKey"
+        }
+      ],
+      "returns": "u256"
+    },
+    {
+      "name": "approve",
+      "docs": [
+        "dev: See {IERC20-approve}.\nRequirements:\n- `spender` cannot be the zero address."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "spender",
+          "type": "publicKey"
+        },
+        {
+          "name": "amount",
+          "type": "u256"
+        }
+      ],
+      "returns": "bool"
+    },
+    {
+      "name": "transferFrom",
+      "docs": [
+        "dev: See {IERC20-transferFrom}.\nEmits an {Approval} event indicating the updated allowance. This is not\nrequired by the EIP. See the note at the beginning of {ERC20}.\nRequirements:\n- `sender` and `recipient` cannot be the zero address.\n- `sender` must have a balance of at least `amount`.\n- the caller must have allowance for ``sender``'s tokens of at least\n`amount`."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "sender",
+          "type": "publicKey"
+        },
+        {
+          "name": "recipient",
+          "type": "publicKey"
+        },
+        {
+          "name": "amount",
+          "type": "u256"
+        }
+      ],
+      "returns": "bool"
+    },
+    {
+      "name": "increaseAllowance",
+      "docs": [
+        "dev: Atomically increases the allowance granted to `spender` by the caller.\nThis is an alternative to {approve} that can be used as a mitigation for\nproblems described in {IERC20-approve}.\nEmits an {Approval} event indicating the updated allowance.\nRequirements:\n- `spender` cannot be the zero address."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "spender",
+          "type": "publicKey"
+        },
+        {
+          "name": "addedvalue",
+          "type": "u256"
+        }
+      ],
+      "returns": "bool"
+    },
+    {
+      "name": "decreaseAllowance",
+      "docs": [
+        "dev: Atomically decreases the allowance granted to `spender` by the caller.\nThis is an alternative to {approve} that can be used as a mitigation for\nproblems described in {IERC20-approve}.\nEmits an {Approval} event indicating the updated allowance.\nRequirements:\n- `spender` cannot be the zero address.\n- `spender` must have allowance for the caller of at least\n`subtractedValue`."
+      ],
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "spender",
+          "type": "publicKey"
+        },
+        {
+          "name": "subtractedvalue",
+          "type": "u256"
+        }
+      ],
+      "returns": "bool"
+    }
+  ],
+  "events": [
+    {
+      "name": "Transfer",
+      "fields": [
+        {
+          "name": "from",
+          "type": "publicKey",
+          "index": true
+        },
+        {
+          "name": "to",
+          "type": "publicKey",
+          "index": true
+        },
+        {
+          "name": "value",
+          "type": "u256",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "Approval",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "publicKey",
+          "index": true
+        },
+        {
+          "name": "spender",
+          "type": "publicKey",
+          "index": true
+        },
+        {
+          "name": "value",
+          "type": "u256",
+          "index": false
+        }
+      ]
+    }
+  ]
+}
